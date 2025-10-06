@@ -1,6 +1,6 @@
 ![サイトサムネイル](./img/readme-thumb.png)
 
-# 🌿 株式会社森下
+# 🌿 株式会社森下（架空サイト）
 
 Hello Mentor 課題で制作した企業サイト。  
 WordPress テーマを自作し、管理画面を最適化。
