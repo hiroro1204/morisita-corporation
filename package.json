@@ -1,0 +1,10 @@
+{
+  "name": "morisita-corporation",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "browser-sync start --proxy \"http://morisita-corporation.local\" --files \"**/*.php, **/*.css, **/*.js\" --ignore \"node_modules\" --no-notify --no-open --port 3000"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.29.3"
+  }
+}

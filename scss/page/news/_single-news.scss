@@ -1,0 +1,301 @@
+@use "../../global" as g;
+
+/*!
+page > news > single-news
+------------------------------
+*/
+
+.news-single-contents {
+  display: grid;
+  gap: 16rem;
+
+  h2,
+  h3 {
+    line-height: normal;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  h2 {
+    font-size: 20rem;
+
+    @include g.mq() {
+      font-size: 24rem;
+    }
+  }
+
+  h3 {
+    font-size: 18rem;
+
+    @include g.mq() {
+      font-size: 20rem;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  ul {
+    display: grid;
+    gap: 4rem;
+
+    li {
+      padding-left: 20rem;
+      font-weight: 700;
+      position: relative;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 10rem;
+        left: 0;
+        width: 8rem;
+        height: 8rem;
+        background-color: var(--color-bg-primary);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  ol {
+    counter-reset: ol-item;
+    display: grid;
+    gap: 4rem;
+
+    li {
+      counter-increment: ol-item;
+      font-weight: 700;
+      display: flex;
+      gap: 8rem;
+      align-items: flex-start;
+
+      &:before {
+        content: counter(ol-item, decimal-leading-zero) ".";
+        margin-top: 3rem;
+        color: var(--color-font-primary);
+        font-family: var(--font-family-en);
+        font-size: 20rem;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+
+  p {
+    a {
+      color: var(--color-link);
+      text-decoration: underline;
+      text-decoration-thickness: 0.5rem;
+      text-underline-offset: 2rem;
+    }
+  }
+
+  .business-contents-section {
+    .business-image-item,
+    .business-icon-item {
+      margin-top: 24rem;
+    }
+
+    // 後続に .business-image-item が“いない”アイテム = 最後の1個
+    .business-image-item:not(:has(~ .business-image-item)),
+    .business-icon-item:not(:has(~ .business-icon-item)) {
+      margin-bottom: 80rem;
+    }
+    // 最初の .business-image-item にだけ適用（先行兄弟が存在しない要素）
+    .business-image-item:not(.business-image-item ~ .business-image-item),
+    .business-icon-item:not(.business-icon-item ~ .business-icon-item) {
+      @include g.mq() {
+        margin-top: 32rem;
+      }
+    }
+  }
+
+  /* チェックリスト */
+  .business-check-list {
+    margin: 24rem 0 80rem;
+    padding: 32rem 20rem;
+    background-color: var(--color-bg-lightest-blue);
+    display: grid;
+    gap: 24rem;
+
+    @include g.mq() {
+      padding: 48rem 40rem;
+    }
+
+    li {
+      font-size: 16rem;
+      line-height: 1.45;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      display: grid;
+      grid-template-columns: 21rem 1fr;
+      gap: 16rem;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 21rem;
+        background-image: url("../img/icon_check.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: translateY(3rem);
+        position: static;
+      }
+
+      @include g.mq() {
+        grid-template-columns: 27rem 1fr;
+        font-size: 18rem;
+        line-height: 1.5;
+
+        &::before {
+          height: 27rem;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  /* ==========================================================
+  businessページ用のブロックパターンのスタイル
+  ========================================================== */
+
+  /* 画像リスト */
+
+  .business-image-item > .wp-block-group__inner-container {
+    display: grid;
+    gap: 16rem;
+    grid-template-rows: 170rem 1fr;
+
+    @include g.mq() {
+      grid-template-columns: 240rem 1fr;
+      grid-template-rows: 1fr;
+      gap: 32rem;
+      align-items: center;
+    }
+  }
+
+  .business-image-item-thumbnail {
+    border-radius: 0 0 0 40rem;
+    overflow: hidden;
+    margin: 0;
+
+    @include g.mq() {
+      height: 160rem;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .business-image-section > .wp-block-group__inner-container {
+    .business-image-section-title {
+      font-size: 18rem;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.05em;
+      margin-top: 0;
+
+      @include g.mq() {
+        font-size: 24rem;
+      }
+    }
+
+    .business-image-section-text {
+      margin-top: 10rem;
+    }
+  }
+
+  /* アイコンリスト */
+
+  .business-icon-item {
+    counter-increment: business-icon-section;
+  }
+
+  .business-icon-item > .wp-block-group__inner-container {
+    display: grid;
+    gap: 16rem;
+    grid-template-columns: 100rem 1fr;
+    align-items: start;
+
+    @include g.mq() {
+      grid-template-columns: 150rem 1fr;
+      gap: 32rem;
+    }
+  }
+
+  .business-icon-item-icon-bg {
+    height: 100rem;
+    background-color: var(--color-bg-lightest-blue);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0;
+
+    @include g.mq() {
+      height: 150rem;
+    }
+
+    img {
+      object-fit: contain;
+      width: 40rem;
+
+      @include g.mq() {
+        width: 67rem;
+      }
+    }
+  }
+
+  .business-icon-section {
+    .business-icon-section-title {
+      font-size: 18rem;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.05em;
+      margin-top: 0;
+
+      @include g.mq() {
+        font-size: 24rem;
+      }
+
+      &::before {
+        content: counter(business-icon-section, decimal-leading-zero) ".";
+        display: block;
+        font-size: 16rem;
+        line-height: normal;
+        letter-spacing: 0.05em;
+        font-family: var(--font-family-en);
+        color: var(--color-font-primary);
+
+        @include g.mq() {
+          font-size: 24rem;
+        }
+      }
+    }
+
+    .business-icon-section-text {
+      margin-top: 3rem;
+      font-size: 14rem;
+      line-height: normal;
+      letter-spacing: 0.05em;
+
+      @include g.mq() {
+        margin-top: 10rem;
+        font-size: 16rem;
+        line-height: 1.9;
+        letter-spacing: normal;
+      }
+    }
+  }
+}
+
+.news-single-buttons {
+  margin-top: 80rem;
+  display: grid;
+  grid-template-columns: repeat(2, 144rem);
+  justify-content: space-between;
+}

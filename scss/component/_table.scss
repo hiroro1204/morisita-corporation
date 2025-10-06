@@ -1,0 +1,57 @@
+@use "../global" as g;
+
+/*!
+component > table
+------------------------------
+*/
+.c-table {
+}
+
+.c-table-row {
+  padding: 23rem 0;
+  display: grid;
+  gap: 4rem;
+  border-top: 1px solid var(--color-sep);
+
+  &:last-child {
+    border-bottom: 1px solid var(--color-sep);
+  }
+
+  @include g.mq() {
+    grid-template-columns: 160rem 1fr;
+    gap: 0;
+    padding: 31rem 0;
+  }
+
+  &--product {
+    @include g.mq() {
+      grid-template-columns: 224rem 1fr;
+    }
+  }
+}
+
+.c-table-head {
+  font-weight: 700;
+  line-height: 1.5;
+
+  @include g.mq() {
+    padding-top: 4rem;
+    line-height: normal;
+  }
+}
+
+.c-table-data {
+  &--address {
+    font-size: 16rem;
+  }
+}
+
+.c-table-list {
+}
+
+.c-table-item {
+  display: flex;
+  &:before {
+    content: "・";
+  }
+}

@@ -1,0 +1,18 @@
+/*!
+global > color
+------------------------------
+*/
+:root {
+  --color-font-base: #49515f;
+  --color-font-light: #9a9eac;
+  --color-font-primary: #1e4aa4;
+  --color-font-white: #fff;
+  --color-bg-primary: #1e4aa4;
+  --color-bg-darkblue: #222a38;
+  --color-bg-cta: linear-gradient(30deg, #254da0 0%, #0772d1 100%);
+  --color-bg-lightest-blue: #f5f8fb;
+  --color-bg-light-grey: #eaecef;
+  --color-link: #497fdf;
+  --color-sep-light-gray: #eeeeee;
+  --color-sep: color-mix(in srgb, #333333 10%, transparent);
+}

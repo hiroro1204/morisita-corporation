@@ -1,0 +1,87 @@
+@use "../global" as g;
+
+/*!
+component > button
+------------------------------
+*/
+
+.c-button {
+  padding: 16rem 24rem;
+  width: 100%;
+  height: fit-content;
+  background-color: var(--color-bg-lightest-blue);
+  border-radius: 36rem;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-family-en);
+  font-size: 16rem;
+  line-height: normal;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  @include g.mq() {
+    padding: 24rem 32rem;
+    font-size: 18rem;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--color-bg-primary);
+      color: var(--color-font-white);
+
+      .c-triangle--button {
+        color: var(--color-font-white);
+        transform: translateX(8rem);
+      }
+    }
+  }
+}
+
+.c-button--small {
+  padding: 16rem 24rem;
+  font-size: 16rem;
+}
+
+.c-button--transparent {
+  padding: 23rem 30rem;
+  font-size: 18rem;
+  gap: 98rem;
+  background-color: color-mix(
+    in srgb,
+    var(--color-font-white) 20%,
+    transparent
+  );
+  border: 1px solid var(--color-font-white);
+  color: var(--color-font-white);
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--color-font-white);
+      color: var(--color-font-primary);
+
+      .c-triangle--button-transparent {
+        color: var(--color-font-primary);
+        transform: translateX(8rem);
+      }
+    }
+  }
+}
+
+// ボタンのテキストとアイコンを反転表示するクラス
+.c-button--reverse {
+  flex-direction: row-reverse;
+
+  @media (any-hover: hover) {
+    &:hover {
+      .c-triangle--button {
+        transform: translateX(-8rem) rotate(180deg);
+      }
+    }
+  }
+}
+
+.c-button--disabled {
+  display: none;
+}

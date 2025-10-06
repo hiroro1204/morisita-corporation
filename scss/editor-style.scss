@@ -1,0 +1,351 @@
+@use "global" as g;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Play:wght@400&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap");
+
+/*!
+editor-style
+------------------------------
+*/
+
+html :where(.wp-block) {
+  margin-block: 16px;
+}
+
+/*!
+editor-style > editor-styles-wrapper
+------------------------------
+*/
+
+html :where(.wp-block) {
+  margin-block: 16px;
+}
+
+.editor-styles-wrapper {
+  line-height: 1.9;
+  color: var(--color-font-base);
+  font-family: var(--font-family-base);
+  font-weight: 500;
+
+  p {
+    font-size: 16px;
+  }
+
+  h2,
+  h3 {
+    line-height: normal;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  h2 {
+    font-size: 20px;
+
+    @include g.mq() {
+      font-size: 24px;
+    }
+  }
+
+  h3 {
+    font-size: 18px;
+
+    @include g.mq() {
+      font-size: 20px;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  ul {
+    display: grid;
+    gap: 4px;
+    justify-content: flex-start;
+    padding-left: 0; // WPが余白を付ける場合がある.
+
+    li {
+      width: 100%;
+      padding-left: 20px;
+      font-weight: 700;
+      position: relative;
+
+      &::marker {
+        content: none;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 8px;
+        height: 8px;
+        background-color: var(--color-bg-primary);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  ol {
+    counter-reset: ol-item;
+    display: grid;
+    gap: 4px;
+    justify-content: flex-start;
+    list-style: none;
+    padding-left: 0; // WPが余白を付ける場合がある.
+
+    li {
+      width: 100%;
+      counter-increment: ol-item;
+      font-weight: 700;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+
+      &::marker {
+        content: none;
+      }
+
+      &:before {
+        content: counter(ol-item, decimal-leading-zero) ".";
+        margin-top: 3px;
+        color: var(--color-font-primary);
+        font-family: var(--font-family-en) !important;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+
+  p {
+    a {
+      color: var(--color-link);
+      text-decoration: underline;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 2px;
+    }
+  }
+
+  /* ==========================================================
+  businessページ用のブロックパターンのスタイル
+  ========================================================== */
+
+  .business-contents-section-title-en {
+    font-family: var(--font-family-en);
+    font-size: 16px;
+    line-height: normal;
+    color: var(--color-font-primary);
+    text-transform: uppercase;
+    margin-bottom: 0;
+
+    @include g.mq() {
+      font-size: 20px;
+    }
+  }
+
+  .business-contents-section-title-ja {
+    font-size: 24px;
+    line-height: normal;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-top: 0;
+
+    @include g.mq() {
+      font-size: 32px;
+    }
+  }
+
+  /* チェックリスト */
+  .business-check-list {
+    margin-top: 24px;
+    padding: 32px 20px;
+    background-color: var(--color-bg-lightest-blue);
+    display: grid;
+    gap: 24px;
+
+    @include g.mq() {
+      padding: 48px 40px;
+    }
+
+    li {
+      width: 100%;
+      font-size: 16px;
+      line-height: 1.45;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      display: grid;
+      grid-template-columns: 21px 1fr;
+      gap: 16px;
+
+      &::marker {
+        content: none;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 21px;
+        background-image: url("../img/icon_check.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: translateY(3px);
+        position: static;
+      }
+
+      @include g.mq() {
+        grid-template-columns: 27px 1fr;
+        font-size: 18px;
+        line-height: 1.5;
+
+        &::before {
+          height: 27px;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  /* 画像リスト */
+  .business-image-list {
+    margin-top: 24px;
+    display: grid;
+    gap: 24px;
+
+    @include g.mq() {
+      margin-top: 32px;
+    }
+  }
+
+  .business-image-item > .wp-block-group__inner-container {
+    display: grid;
+    gap: 16px;
+    grid-template-rows: 170px 1fr;
+
+    @include g.mq() {
+      grid-template-columns: 240px 1fr;
+      grid-template-rows: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+  }
+
+  .business-image-item-thumbnail {
+    border-radius: 0 0 0 40px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    @include g.mq() {
+      height: 160px;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .business-image-section {
+    width: 100%;
+  }
+
+  .business-image-section > .wp-block-group__inner-container {
+    .business-image-section-title {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.05em;
+      margin-top: 0;
+
+      @include g.mq() {
+        font-size: 24px;
+      }
+    }
+
+    .business-image-section-text {
+      margin-top: 10px;
+    }
+  }
+  /* アイコンリスト */
+
+  .business-icon-item {
+    counter-increment: business-icon-section;
+  }
+
+  .business-icon-item > .wp-block-group__inner-container {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 100px 1fr;
+    align-items: start;
+
+    @include g.mq() {
+      grid-template-columns: 150px 1fr;
+      gap: 32px;
+    }
+  }
+  .business-icon-item-icon-bg {
+    height: 100px;
+    width: 100%;
+    background-color: var(--color-bg-lightest-blue);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0;
+
+    @include g.mq() {
+      height: 150px;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .business-icon-section {
+    width: 100%;
+  }
+
+  .business-icon-section > .wp-block-group__inner-container {
+    .business-icon-section-title {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.05em;
+      margin-top: 0;
+
+      @include g.mq() {
+        font-size: 24px;
+      }
+
+      &::before {
+        content: counter(business-icon-section, decimal-leading-zero) ".";
+        display: block;
+        font-size: 16px;
+        line-height: normal;
+        letter-spacing: 0.05em;
+        font-family: var(--font-family-en);
+        color: var(--color-font-primary);
+
+        @include g.mq() {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .business-icon-section-text {
+      margin-top: 3px;
+      font-size: 14px;
+      line-height: normal;
+      letter-spacing: 0.05em;
+
+      @include g.mq() {
+        margin-top: 10px;
+        font-size: 16px;
+        line-height: 1.9;
+        letter-spacing: normal;
+      }
+    }
+  }
+}

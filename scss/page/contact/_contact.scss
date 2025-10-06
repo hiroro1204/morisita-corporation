@@ -1,0 +1,178 @@
+@use "../../global" as g;
+
+/*!
+page > contact > contact
+------------------------------
+*/
+
+.contact-contents {
+  padding: 80rem 0 120rem;
+
+  @include g.mq() {
+    padding: 120rem 0 160rem;
+  }
+}
+
+.contact-contents-inner {
+  @include g.mq() {
+    max-width: 1000rem;
+    margin-inline: auto;
+  }
+}
+
+.contact-form {
+  margin-top: 40rem;
+  display: grid;
+  gap: 24rem;
+
+  @include g.mq() {
+    gap: 32rem;
+  }
+}
+
+.contact-form-item {
+  display: grid;
+  gap: 8rem;
+
+  @include g.mq() {
+    grid-template-columns: 200rem 1fr;
+    gap: 16rem;
+  }
+}
+
+.contact-form-label {
+  font-size: 15rem;
+  line-height: normal;
+  font-weight: 700;
+
+  @include g.mq() {
+    margin-top: 16rem;
+    font-size: 16rem;
+  }
+}
+
+.contact-form-label-required {
+  display: inline-block;
+  margin-left: 8rem;
+  color: #c82b2b;
+  font-size: 14rem;
+  line-height: normal;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  translate: 0 -2rem;
+}
+
+.contact-form-input,
+.contact-form-textarea {
+  padding: 16.5rem 16rem;
+  width: 100%;
+  background-color: var(--color-bg-lightest-blue);
+  border-radius: 4rem;
+  font-size: 15rem;
+  line-height: normal;
+  font-weight: 500;
+  outline: 0;
+
+  &::placeholder {
+    color: color-mix(in srgb, var(--color-font-base) 60%, transparent);
+    font-size: 15rem;
+    font-weight: 500;
+    line-height: normal;
+
+    @include g.mq() {
+      font-size: 16rem;
+      line-height: 1.5;
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px var(--color-bg-primary);
+  }
+
+  @include g.mq() {
+    padding: 15.5rem 24rem;
+    font-size: 16rem;
+    line-height: 1.5;
+  }
+}
+
+.contact-form-textarea {
+  padding: 16rem;
+  min-height: 120rem;
+  field-sizing: content;
+
+  @include g.mq() {
+    padding: 16rem 24rem;
+    min-height: 160rem;
+  }
+}
+
+.contact-form-submit {
+  margin-top: 48rem;
+  text-align: center;
+
+  @include g.mq() {
+    margin-top: 80rem;
+  }
+}
+
+.contact-form-submit-note {
+  margin-bottom: 24rem;
+}
+
+.contact-form-submit-note-link {
+  color: var(--color-font-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 0.5rem;
+  text-underline-offset: 3rem;
+}
+
+.contact-form-button-wrapper {
+  position: relative;
+}
+
+.contact-form-button {
+  position: relative;
+  padding: 24rem 36rem;
+  width: 320rem;
+  background-color: var(--color-bg-primary);
+  color: var(--color-font-white);
+  font-size: 18rem;
+  line-height: normal;
+  letter-spacing: 0.05em;
+  border-radius: 56rem;
+  outline: 0;
+  transition: background-color 0.15s ease-in-out, color 0.1s ease-in-out;
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: #e6f4ff;
+      color: var(--color-bg-primary);
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px var(--color-bg-primary);
+    background-color: #e6f4ff;
+    color: var(--color-bg-primary);
+  }
+}
+
+/* スピナーの位置が干渉しないようにabsoluteで配置 */
+.wpcf7 .wpcf7-spinner {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+}
+
+.wpcf7-not-valid-tip {
+  margin: 8rem 0 0 16rem;
+}
+
+.wpcf7 form .wpcf7-response-output {
+  margin-inline: 0;
+}
+
+.wpcf7 form.invalid .wpcf7-response-output {
+  border-color: #c82b2b;
+}

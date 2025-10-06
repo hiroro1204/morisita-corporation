@@ -1,0 +1,40 @@
+@use "../global" as g;
+
+/*!
+component > pagination
+------------------------------
+*/
+
+.c-pagination {
+  margin-top: 40rem;
+  display: flex;
+  justify-content: center;
+  gap: 8rem;
+
+  .c-triangle {
+    translate: -1rem -1rem;
+  }
+}
+.page-numbers {
+  width: 32rem;
+  height: 32rem;
+  border: 1px solid var(--color-sep);
+  display: grid;
+  place-items: center;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  @media (any-hover: hover) {
+    &:not(.current):hover {
+      background-color: var(--color-font-primary);
+      color: var(--color-font-white);
+      .c-triangle {
+        color: var(--color-font-white);
+      }
+    }
+  }
+}
+
+.current {
+  background-color: var(--color-bg-primary);
+  color: var(--color-font-white);
+}

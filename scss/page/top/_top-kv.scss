@@ -1,0 +1,184 @@
+@use "../../global" as g;
+
+/*!
+page > top > top-kv
+------------------------------
+*/
+
+.top-kv {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.top-kv-splide-container {
+  height: 100vh;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100vw;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 36%,
+      #00143d 100%
+    );
+    position: absolute;
+    z-index: var(--z-index-top-kv-gradient);
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+  }
+}
+
+.top-kv-splide-track {
+  height: 100%;
+}
+
+.top-kv-splide-slide {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.top-kv-inner {
+  width: 100%;
+  position: absolute;
+  bottom: 104px;
+  z-index: var(--z-index-top-kv-inner);
+
+  @include g.mq() {
+    bottom: 104rem;
+  }
+
+  > .l-container {
+    @include g.mq() {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-direction: row-reverse;
+    }
+  }
+}
+
+/* === プログレスバー === */
+
+.top-kv-progress {
+  width: clamp(14px, 104rem, 150px);
+  height: clamp(14px, 104rem, 150px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+
+  /* PCサイズ */
+  @include g.mq() {
+    width: 146rem;
+    height: 146rem;
+  }
+
+  /* ここから調整パラメータ */
+  --ring: 2rem; /* リングの太さ（元ボーダー厚と同じ） */
+  --base-color: color-mix(
+    in srgb,
+    var(--color-font-white) 20%,
+    transparent
+  ); /* 下地リングの色（元ボーダー色） */
+  --prog-color: var(--color-font-white); /* タイマー色 */
+  --progress: 0; /* JS から 0〜1 で更新 */
+
+  /* 下地リング・タイマーリング 共通部分 */
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - var(--ring)),
+      #fff 0
+    );
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - var(--ring)),
+      #fff 0
+    );
+    pointer-events: none;
+  }
+
+  /* 下地リング（元の薄いボーダー相当） */
+  &::after {
+    background: conic-gradient(var(--base-color) 1turn);
+  }
+
+  /* タイマーリング（下地の真上を走る） */
+  &::before {
+    /* 0.5deg オーバーラップで継ぎ目の隙間を消す */
+    background: conic-gradient(
+      from 0deg,
+      var(--prog-color) 0deg calc(var(--progress) * 360deg + 0.5deg),
+      transparent calc(var(--progress) * 360deg + 0.5deg) 360deg
+    );
+  }
+}
+
+.top-kv-progress-number {
+  font-family: var(--font-family-en);
+  font-size: 25.64rem;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--color-font-white);
+  position: relative;
+  z-index: 1;
+
+  @include g.mq() {
+    font-size: 36rem;
+  }
+}
+
+/* === プログレスバー終わり === */
+
+.top-kv-copy {
+  margin-top: 32rem;
+}
+
+.top-kv-copy-ja,
+.top-kv-copy-en {
+  display: block;
+}
+
+.top-kv-copy-ja {
+  font-size: clamp(14px, 30rem, 50px);
+  line-height: normal;
+  color: var(--color-font-white);
+
+  @include g.mq() {
+    font-size: 55rem;
+  }
+
+  span {
+    display: block;
+  }
+}
+
+.top-kv-copy-en {
+  margin-top: 8rem;
+  font-family: var(--font-family-en);
+  font-size: 18rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  color: color-mix(in srgb, var(--color-font-white) 68%, transparent);
+
+  @include g.mq() {
+    margin-top: 24rem;
+    font-size: 20rem;
+    line-height: 1.7;
+  }
+}

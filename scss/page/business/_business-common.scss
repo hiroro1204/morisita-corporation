@@ -1,0 +1,60 @@
+@use "../../global" as g;
+
+/*!
+page > business > business-common
+------------------------------
+*/
+.business-contents-wrapper {
+  padding: 80rem 0;
+
+  @include g.mq() {
+    padding: 149.62rem 0 201rem;
+    display: grid;
+    grid-template-columns: 240rem 1fr;
+    gap: 155rem;
+  }
+}
+
+.business-contents-main {
+  display: grid;
+  gap: 80rem;
+
+  p {
+    margin-top: 16rem;
+    font-size: 16rem;
+    line-height: 2;
+
+    @include g.mq() {
+      margin-top: 24rem;
+      line-height: 1.9;
+    }
+  }
+}
+
+.business-contents-section-title > .wp-block-group__inner-container {
+  display: grid;
+
+  .business-contents-section-title-en {
+    font-family: var(--font-family-en);
+    font-size: 16rem;
+    line-height: normal;
+    color: var(--color-font-primary);
+    text-transform: uppercase;
+    margin-top: 0;
+
+    @include g.mq() {
+      font-size: 20rem;
+    }
+  }
+
+  .business-contents-section-title-ja {
+    font-size: 24rem;
+    line-height: normal;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+
+    @include g.mq() {
+      font-size: 32rem;
+    }
+  }
+}

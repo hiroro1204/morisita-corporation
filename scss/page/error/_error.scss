@@ -1,0 +1,23 @@
+@use "../../global" as g;
+
+/*!
+page > 404 > 404
+------------------------------
+*/
+
+.not-found-contents-text {
+  margin-top: 16rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @include g.mq() {
+    text-align: center;
+  }
+}
+
+.not-found-contents-button {
+  margin: 64rem auto 0;
+  width: 240rem;
+}

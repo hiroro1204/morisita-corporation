@@ -1,0 +1,104 @@
+@use "../../global" as g;
+
+/*!
+page > business > business-menu
+------------------------------
+*/
+.business-contents-menu {
+  // SPでは非表示
+  display: none;
+
+  @include g.mq() {
+    display: block;
+  }
+}
+
+.business-contents-menu-title-en {
+  font-family: var(--font-family-en);
+  font-size: 40rem;
+  line-height: normal;
+  color: var(--color-font-primary);
+  text-transform: uppercase;
+}
+
+.business-contents-menu-title-ja {
+  margin-top: 8rem;
+  color: var(--color-font-light);
+  font-size: 15rem;
+  line-height: normal;
+  font-weight: 500;
+}
+
+.business-contents-menu-inner {
+  position: sticky;
+  top: 180rem;
+
+  /* Easy Table of Contentsプラグインへのスタイル */
+  #ez-toc-container {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  #ez-toc-container .ez-toc-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  #ez-toc-container ul {
+    margin-top: 32rem;
+    display: grid;
+    gap: 16rem;
+  }
+
+  #ez-toc-container a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16rem;
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--color-font-base) 50%, transparent);
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 7.79rem;
+      aspect-ratio: 7 / 8;
+      background: currentColor;
+      color: var(--color-font-primary);
+      transform-origin: center;
+      transform: translateX(1.61rem);
+      transition: color 0.15s ease, transform 0.15s ease;
+
+      /* 正規化座標（Yは0〜100%：上=0%, 下=100%） */
+      --tip-x: calc(
+        6.75 / 7 * 100%
+      ); /* ≒ 96.429%：先端のX（元図比率に基づく） */
+      --tip-y: 50%; /* 先端のY（上下の中点） */
+      --bottom: 100%; /* 下端 */
+
+      -webkit-clip-path: polygon(
+        0 0,
+        var(--tip-x) var(--tip-y),
+        0 var(--bottom)
+      );
+      clip-path: polygon(0 0, var(--tip-x) var(--tip-y), 0 var(--bottom));
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-base);
+        text-decoration: none;
+      }
+    }
+  }
+
+  #ez-toc-container a:focus-visible {
+    outline: none;
+    outline-offset: 0;
+  }
+
+  /* アクティブ状態：li要素にis-activeクラスが付いた時のスタイル */
+  #ez-toc-container li.is-active a {
+    color: var(--color-font-base);
+  }
+}

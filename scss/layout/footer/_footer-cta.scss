@@ -1,0 +1,164 @@
+@use "../../global" as g;
+
+/*!
+layout > footer > footer-cta
+------------------------------
+*/
+
+.footer-cta {
+  padding: 98.91rem 0 106.64rem;
+  background-color: var(--color-bg-lightest-blue);
+  border-radius: 32rem 32rem 0 0;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+
+  @include g.mq() {
+    padding: 147.67rem 0 140.07rem;
+  }
+
+  // ===== contact usテキスト無限スクロールアニメーション =====
+  &::before,
+  &::after {
+    content: "contact us contact us";
+    font-family: var(--font-family-en);
+    font-size: 120rem;
+    line-height: normal;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-font-primary) 7.13%, transparent);
+    position: absolute;
+    top: 133rem;
+    width: 1340rem;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    animation: footer-cta-text-scroll 10s linear infinite;
+    --footer-cta-scroll-width: 1340rem;
+    --footer-cta-scroll-gap: 1em; // 半角スペース分を考慮
+
+    @include g.mq() {
+      font-size: 176rem;
+      top: 172rem;
+      width: 1965rem;
+      --footer-cta-scroll-width: 1965rem;
+    }
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    left: calc(var(--footer-cta-scroll-width) + var(--footer-cta-scroll-gap));
+  }
+
+  @keyframes footer-cta-text-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(
+        calc(
+          -1 * (var(--footer-cta-scroll-width) + var(--footer-cta-scroll-gap))
+        )
+      );
+    }
+  }
+}
+
+.footer-cta-button {
+  width: 218rem;
+  height: 218rem;
+  border-radius: 50%;
+  background: var(--color-bg-cta);
+  display: grid;
+  place-items: center;
+  position: relative;
+  transition: filter 0.2s ease-in-out;
+
+  @include g.mq() {
+    width: 280rem;
+    height: 280rem;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
+
+  // ===== リングが広がるアニメーション =====
+  &::before {
+    content: "";
+    width: 218rem;
+    height: 218rem;
+    border: 1rem solid var(--color-bg-primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    transform-origin: center;
+    box-shadow: 0 0 32rem 0 rgba(255, 255, 255, 0.15);
+    animation: footer-cta-expand 1.5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+
+    @include g.mq() {
+      width: 280rem;
+      height: 280rem;
+    }
+  }
+
+  @keyframes footer-cta-expand {
+    0% {
+      scale: 1;
+      box-shadow: 0 0 32rem 0 rgba(255, 255, 255, 0.15);
+      opacity: 1;
+    }
+    70% {
+      scale: 1.1;
+      box-shadow: 0 0 64rem 0 rgba(255, 255, 255, 0.1);
+      opacity: 1;
+    }
+    100% {
+      scale: 1.1;
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+      opacity: 0;
+    }
+  }
+}
+
+.footer-cta-icon-text {
+  width: 175rem;
+  gap: 8rem;
+  display: grid;
+  text-align: center;
+  color: var(--color-font-white);
+  position: absolute;
+  top: 79.12rem;
+  left: 50%;
+  translate: -50% 0;
+
+  @include g.mq() {
+    gap: 16rem;
+    top: 93.87rem;
+  }
+}
+
+.footer-cta-icon-text-en {
+  font-family: var(--font-family-en);
+  font-size: 32rem;
+  text-transform: uppercase;
+  line-height: normal;
+
+  @include g.mq() {
+    font-size: 40rem;
+  }
+}
+
+.footer-cta-icon-text-ja {
+  font-size: 15rem;
+  line-height: normal;
+}

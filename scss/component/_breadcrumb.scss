@@ -1,0 +1,31 @@
+@use "../global" as g;
+
+/*!
+component > breadcrumb
+------------------------------
+*/
+.c-breadcrumb {
+  margin: 16rem 0 0 0;
+
+  @include g.mq() {
+    margin: 29.38rem 0 0 0;
+  }
+}
+
+.c-breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 8rem 16rem;
+  flex-wrap: wrap;
+
+  span {
+    font-size: 14rem;
+    line-height: normal;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  > span:last-of-type {
+    color: var(--color-font-primary);
+  }
+}

@@ -1,0 +1,17 @@
+@use "../../global" as g;
+
+/*!
+page > product > product
+------------------------------
+*/
+
+.product-archive-list {
+  display: grid;
+  grid-template-columns: repeat(2, 160rem);
+  gap: 24rem 20rem;
+
+  @include g.mq() {
+    grid-template-columns: repeat(3, 404rem);
+    gap: 64rem 44rem;
+  }
+}

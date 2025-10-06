@@ -1,0 +1,291 @@
+@use "../../global" as g;
+
+/*!
+layout > header > header-main
+------------------------------
+*/
+
+.header {
+  width: 100%;
+  padding-top: 32rem;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-index-header);
+
+  @include g.mq() {
+    padding-top: 48rem;
+  }
+}
+
+/* KV以下にスクロールで、ヘッダーを固定表示 */
+.header.is-fixed {
+  background-color: transparent;
+  position: fixed;
+  top: -88rem;
+  left: 0;
+
+  @include g.mq() {
+    background-color: var(--color-font-white);
+    padding: 16rem 0;
+  }
+
+  @include g.mq() {
+    .header-nav-item:not(.header-nav-item--contact),
+    .header-nav-item .c-triangle {
+      color: var(--color-font-base);
+    }
+
+    .header-nav-item-sub-item,
+    .header-nav-item-sub-item .c-triangle {
+      color: var(--color-font-white);
+    }
+  }
+
+  .header-logo-img--initial {
+    display: none;
+  }
+
+  .header-logo-img--fixed {
+    display: block;
+  }
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 160rem 56rem;
+  justify-content: space-between;
+  align-items: center;
+
+  @include g.mq() {
+    grid-template-columns: 246.67rem 1fr;
+  }
+}
+
+.header-logo {
+  width: 100%;
+
+  .header-logo-img--white {
+    display: block;
+  }
+
+  .header-logo-img--fixed {
+    display: none;
+  }
+}
+
+/* メニューはdialogで実装. pcではdialogを常に表示 */
+
+.header-menu {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-bg-primary);
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  @include g.mq() {
+    display: block; // PCサイズでは常に表示
+    width: auto;
+    height: auto;
+    background: transparent;
+    margin: 0;
+    position: static;
+  }
+
+  &::backdrop {
+    display: none;
+  }
+}
+
+.header-menu-head {
+  display: grid;
+  grid-template-columns: 160rem 56rem;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32rem;
+
+  @include g.mq() {
+    display: none;
+  }
+}
+
+.header-nav-list {
+  padding: 64rem 64rem 72rem 20rem;
+
+  @include g.mq() {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0 40rem;
+    padding: 0; // PCサイズではパディングをリセット
+  }
+}
+
+.header-nav-item {
+  color: var(--color-font-white);
+  border-top: 1rem solid
+    color-mix(in srgb, var(--color-font-white) 20%, transparent);
+
+  &:last-child {
+    border-bottom: 1rem solid
+      color-mix(in srgb, var(--color-font-white) 20%, transparent);
+
+    @include g.mq() {
+      border-bottom: none;
+    }
+  }
+
+  @include g.mq() {
+    border: none;
+  }
+}
+
+.header-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0 8rem;
+  padding: 20rem 16rem;
+  transition: color 0.15s ease-in-out;
+
+  @include g.mq() {
+    padding: 0;
+
+    @media (any-hover: hover) {
+      &:hover {
+        .header-nav-text-en,
+        .header-nav-text-ja {
+          color: var(--color-font-primary);
+          filter: brightness(1.3);
+        }
+
+        .c-triangle {
+          color: var(--color-font-primary);
+          filter: brightness(1.3);
+        }
+      }
+    }
+  }
+}
+
+.header-nav-item--business {
+  @include g.mq() {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0 9rem;
+  }
+
+  button {
+    cursor: default;
+    @include g.mq() {
+      cursor: pointer;
+    }
+  }
+}
+
+.header-nav-item-sub-list {
+  display: block;
+
+  @include g.mq() {
+    display: none;
+    width: 312rem;
+    padding: 8rem;
+    border-radius: 16rem;
+    position: absolute;
+    top: 42rem;
+    left: -124rem;
+    background-color: var(--color-bg-primary);
+  }
+
+  &.is-open {
+    @include g.mq() {
+      display: block;
+    }
+  }
+}
+
+.header-nav-item-sub-item {
+  border-top: 1rem solid
+    color-mix(in srgb, var(--color-font-white) 20%, transparent);
+
+  @include g.mq() {
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+.header-nav-item-sub-link {
+  padding: 16rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14rem;
+  line-height: normal;
+
+  letter-spacing: 0.05em;
+}
+
+.header-nav-item--contact {
+  .header-nav-link {
+    @include g.mq() {
+      padding: 12rem 32rem;
+      background-color: var(--color-bg-primary);
+      color: var(--color-font-white);
+      border-radius: 56rem;
+      transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: #e6f4ff;
+        color: var(--color-bg-primary);
+        box-shadow: 0 0 0 1rem var(--color-bg-primary);
+      }
+    }
+  }
+}
+
+.header-nav-text-en {
+  font-family: var(--font-family-en);
+  font-size: 24rem;
+  text-transform: uppercase;
+  line-height: normal;
+
+  @include g.mq() {
+    font-family: var(--font-family-base);
+    font-size: 16rem;
+    line-height: 1.9;
+    transition: color 0.15s ease-in-out, filter 0.15s ease-in-out;
+  }
+}
+
+.header-nav-text-ja {
+  font-size: 16rem;
+
+  &--small {
+    font-size: 15rem;
+    line-height: 1;
+
+    @include g.mq() {
+      font-size: 16rem;
+      line-height: 1.9;
+      transition: color 0.15s ease-in-out, filter 0.15s ease-in-out;
+    }
+  }
+}
+
+.header-nav-text--hide-pc {
+  @include g.mq() {
+    display: none;
+  }
+}
+
+.header-nav-text--black {
+  @include g.mq() {
+    color: var(--color-font-base);
+  }
+}

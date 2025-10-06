@@ -1,0 +1,33 @@
+@use "../../global" as g;
+
+/*!
+page > privacy > privacy
+------------------------------
+*/
+
+.privacy-contents {
+  h2 {
+    margin: 40rem 0 16rem;
+    font-size: 20rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+
+    @include g.mq() {
+      font-size: 24rem;
+      line-height: normal;
+    }
+  }
+
+  ol {
+    list-style: decimal;
+    padding-left: 20rem;
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1rem;
+    text-underline-offset: 2rem;
+  }
+}

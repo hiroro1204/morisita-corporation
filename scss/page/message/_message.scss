@@ -1,0 +1,75 @@
+@use "../../global" as g;
+
+/*!
+page > message > message
+------------------------------
+*/
+
+.message-contents {
+}
+
+.message-section {
+  display: grid;
+  gap: 32rem 0;
+
+  @include g.mq() {
+    grid-template-columns: 400rem 1fr;
+    gap: 0 56rem;
+  }
+}
+
+.message-section-image {
+  height: 228rem;
+  aspect-ratio: 340 / 228;
+  border-radius: 0 0 0 32rem;
+  overflow: hidden;
+
+  @include g.mq() {
+    height: 533rem;
+    aspect-ratio: 400 / 533;
+    border-radius: 0 0 0 56rem;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.message-section-content-copy,
+.message-section-sign-name {
+  font-size: 28rem;
+  line-height: normal;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+
+  @include g.mq() {
+    font-size: 32rem;
+  }
+}
+
+.message-section-content-copy {
+  margin-bottom: 16rem;
+
+  @include g.mq() {
+    margin-bottom: 24rem;
+  }
+}
+
+.message-copy-primary {
+  color: var(--color-font-primary);
+}
+
+.message-section-content-text {
+  display: grid;
+  gap: 12rem;
+}
+
+.message-section-sign {
+  margin-top: 32rem;
+  display: grid;
+
+  @include g.mq() {
+    margin-top: 40rem;
+  }
+}

@@ -1,0 +1,76 @@
+@use "../../global" as g;
+
+/*!
+page > product > single-product
+------------------------------
+*/
+
+.product-content-main-image {
+  height: 227rem;
+  aspect-ratio: 340 / 227;
+  border-radius: 0 0 0 56rem;
+  border: 1px solid #dadada;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include g.mq() {
+    height: 500rem;
+    aspect-ratio: 1000 / 500;
+  }
+
+  &--zoomout {
+    img {
+      object-fit: contain;
+      padding: 6%;
+
+      @include g.mq() {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.product-content-thumbnails {
+  width: fit-content;
+  margin: 16rem 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 72rem);
+  grid-template-rows: 72rem;
+  gap: 8rem;
+
+  @include g.mq() {
+    margin: 24rem 0 0 auto;
+    grid-template-columns: repeat(3, 104rem);
+    grid-template-rows: 104rem;
+    gap: 16rem;
+  }
+}
+
+.product-content-thumbnail {
+  height: 100%;
+  border: 1px solid #dadada;
+  transition: opacity 0.15s ease-in-out;
+
+  &.is-active {
+    border-color: var(--color-font-primary);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.product-content-table {
+  margin-top: 56rem;
+}

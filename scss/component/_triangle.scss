@@ -1,0 +1,117 @@
+@use "../global" as g;
+
+/*!
+component > triangle (clip-path, normalized)
+-------------------------------------------
+- 右向きデフォルト
+- 縦方向は「上端=0%、下端=100%」で正規化
+- 比率固定（widthだけ指定）
+- デフォルト幅: 7.79rem
+- 色は currentColor（= color）で制御
+*/
+
+.c-triangle {
+  /* デフォルトサイズ＆比率ロック */
+  width: 7.79rem;
+  aspect-ratio: 7 / 8; /* 必要に応じて 7.79/6.75 にしてもOK */
+
+  display: inline-block;
+  background: currentColor;
+  color: var(--color-font-white);
+  transform-origin: center;
+  transform: translateX(1.61rem);
+  transition: color 0.15s ease, transform 0.15s ease;
+
+  /* 正規化座標（Yは0〜100%：上=0%, 下=100%） */
+  --tip-x: calc(6.75 / 7 * 100%); /* ≒ 96.429%：先端のX（元図比率に基づく） */
+  --tip-y: 50%; /* 先端のY（上下の中点） */
+  --bottom: 100%; /* 下端 */
+
+  -webkit-clip-path: polygon(0 0, var(--tip-x) var(--tip-y), 0 var(--bottom));
+  clip-path: polygon(0 0, var(--tip-x) var(--tip-y), 0 var(--bottom));
+}
+
+/* PCのみ表示 */
+.c-triangle--only-pc {
+  display: none;
+
+  @include g.mq() {
+    display: inline-block;
+    transition: color 0.15s ease-in-out;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-primary);
+        filter: brightness(1.3);
+      }
+    }
+  }
+}
+
+/* 派生カラー */
+.c-triangle--black {
+  color: var(--color-font-base);
+}
+
+.c-triangle--primary {
+  color: var(--color-font-primary);
+}
+
+/* 派生サイズ（幅だけ上書き。高さは aspect-ratio が追従） */
+.c-triangle--button {
+  width: 10.39rem;
+  color: var(--color-font-primary);
+}
+
+.c-triangle--button-transparent {
+  color: var(--color-font-white);
+}
+
+.c-triangle--splide-button-next,
+.c-triangle--splide-button-prev {
+  width: 15.59rem;
+  color: var(--color-font-white);
+}
+
+.c-triangle--splide-button-next {
+  transform: translateX(2.41rem);
+}
+
+.c-triangle--splide-button-prev {
+  transform: rotate(180deg) translateX(2.41rem); /* 左向き */
+}
+
+.c-triangle--scrolltop {
+  width: 14rem;
+  color: var(--color-font-white);
+  transform: rotate(270deg); /* 上向き */
+}
+
+/* 回転ユーティリティ */
+.rotate-0 {
+  transform: rotate(0deg);
+}
+.c-triangle--rotate-90 {
+  transform: rotate(90deg);
+} /* 下向き */
+
+.c-triangle--rotate-180 {
+  transform: rotate(180deg);
+}
+.c-triangle--rotate-270 {
+  transform: rotate(270deg);
+}
+
+/* カラー（currentColor を変更） */
+.color-blue {
+  color: #1e4aa4;
+}
+.color-red {
+  color: #e63946;
+}
+.color-green {
+  color: #2e7d32;
+}
+.color-gray {
+  color: #6e6e6e;
+}
