@@ -122,7 +122,7 @@
 						</a>
 					</article>
 				</li>
-						<?php
+				<?php
 					endwhile;
 					wp_reset_postdata();
 				endif;
@@ -182,7 +182,7 @@
 						</span>
 					</a>
 				</li>
-						<?php
+				<?php
 					endforeach;
 				endif;
 				?>
@@ -252,14 +252,14 @@
 									</div>
 								</a>
 							</li>
-									<?php
+							<?php
 								endforeach;
 							else :
 								?>
 							<li class="splide__slide">
 								<p>製品はまだありません。</p>
 							</li>
-								<?php
+							<?php
 							endif;
 							?>
 						</ul>
@@ -330,7 +330,8 @@
 				</a>
 			</li>
 			<li class="top-subpages-list-item">
-				<a href="<?php echo esc_url( get_post_type_archive_link( 'access' ) ); ?>" class="top-subpages-list-link">
+				<a href="<?php echo esc_url( get_post_type_archive_link( 'access' ) ); ?>"
+					class="top-subpages-list-link">
 					<div class="top-subpages-list-item-inner">
 						<div class="top-subpages-list-title">
 							<span class="top-subpages-list-title-en">access</span>
