@@ -14,16 +14,12 @@ WordPress テーマを自作し、管理画面を最適化。
 WordPress / PHP / HTML / SCSS / JavaScript  
 Splide スライダー / Local 開発環境
 
----
-
 ### 🚀 制作ポイント
 
 - カスタム投稿 + ACF + ブロックパターンで運用しやすい構成
 - コードとデザインの再利用性を意識した設計
 - レスポンシブ対応（SP・PC）
 - SEO SIMPLE PACK によるメタ設定
-
----
 
 ## 🧭 開発環境（概要）
 
