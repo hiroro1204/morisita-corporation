@@ -9,12 +9,12 @@ WordPress テーマを自作し、管理画面を最適化。
 
 ---
 
-### 🖥 使用技術
+## 🖥 使用技術
 
 WordPress / PHP / HTML / SCSS / JavaScript  
 Splide スライダー / Local 開発環境
 
-### 🚀 制作ポイント
+## 🚀 制作ポイント
 
 - プログレスバーやクリックによる画像変更、アニメーションを JavaScript で実装
 - カスタム投稿 + ACF + ブロックパターンで運用しやすい構成
