@@ -139,6 +139,20 @@ function disable_contact_form7_formatting() {
 }
 add_action( 'template_redirect', 'disable_contact_form7_formatting' );
 
+
+/**
+ * Contact Form 7のフォーム内でプライバシーポリシーのURLを動的に置換
+ *
+ * @param string $content フォームのHTMLコンテンツ.
+ * @return string 置換後のHTMLコンテンツ.
+ */
+function replace_privacy_url_in_contact_form( $content ) {
+	$privacy_url = esc_url( home_url( '/privacy' ) );
+	$content     = str_replace( '{{PRIVACY_URL}}', $privacy_url, $content );
+	return $content;
+}
+add_filter( 'wpcf7_form_elements', 'replace_privacy_url_in_contact_form' );
+
 /**
  * AAccess個別投稿をaccessのアーカイブページへリダイレクト
  */
